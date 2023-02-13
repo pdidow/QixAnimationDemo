@@ -82,24 +82,43 @@ namespace QixAnimationDemo
         //    lineTexturePoint.SetData(new Color[] { Color.Red });
         //    _spriteBatch.Draw(lineTexturePoint, start, null, color, angle, Vector2.Zero, new Vector2(distance, thickness), SpriteEffects.None, 0);
         //}
+        //float x1(float t)
+        //{
+        //    return (float)(Math.Sin(t / 10) * 100 + Math.Sin(t / 5) * 20 + 200);
+        //}
+
+        //float y1(float t)
+        //{
+        //    return (float)(Math.Cos(t / 10) * 100 + 200);
+        //}
+
+        //float x2(float t)
+        //{
+        //    return (float)(Math.Sin(t / 10) * 200 + Math.Sin(t) * 2 + 200);
+        //}
+
+        //float y2(float t)
+        //{
+        //    return (float)(Math.Cos(t / 20) * 200 + Math.Cos(t / 12) * 20 + 200);
+        //}
         float x1(float t)
         {
-            return (float)(Math.Sin(t / 10) * 100 + Math.Sin(t / 5) * 20 + 200);
+            return (float)(Math.Sin(t / 5) * 100 + 200);
         }
 
         float y1(float t)
         {
-            return (float)(Math.Cos(t / 10) * 100 + 200);
+            return (float)(Math.Cos(t / 5) * 100 + 200);
         }
 
         float x2(float t)
         {
-            return (float)(Math.Sin(t / 10) * 200 + Math.Sin(t) * 2 + 200);
+            return (float)(Math.Sin(t / 2) * 200 + 200);
         }
-
         float y2(float t)
         {
-            return (float)(Math.Cos(t / 20) * 200 + Math.Cos(t / 12) * 20 + 200);
+            return (float)(Math.Cos(t / 10) * (200 + 100 * Math.Sin(t / 2)) + 200);
         }
+
     }
 }
