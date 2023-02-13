@@ -25,7 +25,7 @@ namespace QixAnimationDemo
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+          
             base.Initialize();
         }
 
@@ -41,8 +41,7 @@ namespace QixAnimationDemo
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            t += 0.05f;
-
+            t += 0.25f;           
             base.Update(gameTime);
         }
 
@@ -51,12 +50,18 @@ namespace QixAnimationDemo
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+            //for (int i = 0; i < NUM_LINES; i++)
+            //{
+            //    Vector2 start = new Vector2(x1(t+i), y1(t+i));
+            //    Vector2 end = new Vector2(x2(t+i), y2(t+i));
+            //    DrawLine(start, end, Color.White, 5);
+
+            //}
             for (int i = 0; i < NUM_LINES; i++)
             {
-                Vector2 start = new Vector2(x1(t+i), y1(t+i));
-                Vector2 end = new Vector2(x2(t+i), y2(t+i));
-                DrawLine(start, end, Color.White, 5);
-                
+                Vector2 start = new Vector2(x1(t + i), y1(t + i));
+                Vector2 end = new Vector2(x2(t + i), y2(t + i));
+                DrawLineWithFade(start, end, Color.White, i + 1);
             }
             t += 0.05f;
             _spriteBatch.End();
@@ -69,19 +74,20 @@ namespace QixAnimationDemo
             var angle = (float)Math.Atan2(end.Y - start.Y, end.X - start.X);
             Texture2D lineTexturePoint;
             lineTexturePoint = new Texture2D(_graphics.GraphicsDevice, 1, 1);
-            lineTexturePoint.SetData(new Color[] { Color.Red });
+            lineTexturePoint.SetData(new Color[] { Color.Green });
             _spriteBatch.Draw(lineTexturePoint, start, null, color, angle, Vector2.Zero, new Vector2(distance, thickness), SpriteEffects.None, 0);
         }
-        //public void DrawLineWithFade(Vector2 start, Vector2 end, Color color, float thickness = 1)
-        //{
-        //    color.A = (byte)(255 / NUM_LINES * (NUM_LINES - thickness));
-        //    var distance = Vector2.Distance(start, end);
-        //    var angle = (float)Math.Atan2(end.Y - start.Y, end.X - start.X);
-        //    Texture2D lineTexturePoint;
-        //    lineTexturePoint = new Texture2D(_graphics.GraphicsDevice, 1, 1);
-        //    lineTexturePoint.SetData(new Color[] { Color.Red });
-        //    _spriteBatch.Draw(lineTexturePoint, start, null, color, angle, Vector2.Zero, new Vector2(distance, thickness), SpriteEffects.None, 0);
-        //}
+        public void DrawLineWithFade(Vector2 start, Vector2 end, Color color, float thickness = 1)
+        {
+            color.A = (byte)(255 / NUM_LINES * (NUM_LINES - thickness));
+            var distance = Vector2.Distance(start, end);
+            var angle = (float)Math.Atan2(end.Y - start.Y, end.X - start.X);
+            Texture2D lineTexturePoint;
+            lineTexturePoint = new Texture2D(_graphics.GraphicsDevice, 1, 1);
+            lineTexturePoint.SetData(new Color[] { Color.DarkOliveGreen });
+            _spriteBatch.Draw(lineTexturePoint, start, null, color, angle, Vector2.Zero, new Vector2(distance, thickness), SpriteEffects.None, 0);
+        }
+
         //float x1(float t)
         //{
         //    return (float)(Math.Sin(t / 10) * 100 + Math.Sin(t / 5) * 20 + 200);
